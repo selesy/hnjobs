@@ -34,6 +34,6 @@
 # End of https://www.toptal.com/developers/gitignore/api/vscode,go
 
 # Artifacts created by 'go build ./...' or 'go build'
-./import
-./main
-./server
+/import
+/main
+/server
