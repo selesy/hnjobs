@@ -1,0 +1,32 @@
+
+syntax = "proto3";
+package hnjobs;
+
+option go_package = "github.com/selesy/hnjobs";
+
+message ItemReference {
+    int32 id = 1;
+}
+
+enum ImportItemStatus {
+    DUMMY_ITEM_STATUS = 0;
+    ACCEPTED = 1;
+    EXISTS = 2;
+    REJECTED = 3;
+}
+
+enum ImportJobStatus {
+    DUMMY_JOB_STATUS = 0;
+    RUNNING = 1;
+    WAITING = 2;
+    ARCHIVED = 3;
+}
+
+message ImportStatus {
+    ImportItemStatus item_status = 1;
+    ImportJobStatus job_status = 2;
+}
+
+service HNJobs {
+    rpc ImportWhoIsHiring(ItemReference) returns (ImportStatus) {};
+}
