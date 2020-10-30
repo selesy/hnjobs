@@ -27,6 +27,14 @@ message ImportStatus {
     ImportJobStatus job_status = 2;
 }
 
-service HNJobs {
-    rpc ImportWhoIsHiring(ItemReference) returns (ImportStatus) {};
+message JobStatus {
+}
+
+service Import {
+    rpc AddWhoIsHiring(ItemReference) returns (ImportStatus) {};
+    rpc UpsertJob(ItemReference) returns (JobStatus) {};
+}
+
+service Post {
+
 }
