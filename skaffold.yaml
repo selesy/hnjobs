@@ -1,0 +1,32 @@
+apiVersion: skaffold/v2beta9
+kind: Config
+metadata:
+  name: hnjobs
+build:
+  artifacts:
+  - image: hnjobs-server
+    docker:
+      dockerfile: Dockerfile-server
+      buildArgs:
+        MAIN: "cmd/server/server.go"
+    requires:
+      - image: hnjobs-build
+        alias: BUILD
+      - image: hnjobs-run
+        alias: RUN
+  - image: hnjobs-build
+    docker:
+      dockerfile: Dockerfile-build
+  - image: hnjobs-run
+    docker:
+      dockerfile: Dockerfile-run
+deploy:
+  kubectl:
+    manifests:
+    - k8s/server.yaml
+portForward:
+  - resourceType: Service
+    resourceName: hnjobs-server
+    namespace: default
+    port: 12345
+    localPort: 12345

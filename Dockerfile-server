@@ -1,0 +1,9 @@
+ARG BUILD
+ARG RUN
+
+FROM $BUILD as build
+RUN go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /app cmd/server/server.go
+
+FROM $RUN
+COPY --from=build /app .
+RUN ["chmod", "+x", "/app"]
