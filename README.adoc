@@ -1,0 +1,5 @@
+== HN Jobs
+
+Provides an importer, processor, server and client to allow full-text
+searches of Hacker News job postings from the monthly "Who is hiring"
+thread.
