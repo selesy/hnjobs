@@ -23,10 +23,11 @@ build:
 deploy:
   kubectl:
     manifests:
+    # - k8s/coredns.yaml
     - k8s/server.yaml
-portForward:
-  - resourceType: Service
-    resourceName: hnjobs-server
-    namespace: default
-    port: 12345
-    localPort: 12345
+# portForward:
+#   - resourceType: Service
+#     resourceName: hnjobs-server
+#     namespace: default
+#     port: 12345
+#     localPort: 12345
