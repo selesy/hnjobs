@@ -18,3 +18,10 @@ minikube addons enable ingress
 eval $(minikube -p minikube docker-env)
 skaffold dev
 ----
+
+The local deployment can be verified using the following commands:
+
+[source, bash]
+----
+grpcurl -d '{"id":1234}' grpc.example.com:443 hnjobs.Import/AddWhoIsHiring
+----
