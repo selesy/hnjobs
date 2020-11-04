@@ -3,3 +3,18 @@
 Provides an importer, processor, server and client to allow full-text
 searches of Hacker News job postings from the monthly "Who is hiring"
 thread.
+
+=== Development
+
+HNJobs can be developed and fully tested on Minikube before merging
+pull requests.  Skaffold is required as a build/deploy dependency.  Use
+the following set of commands to build and deploy the HNJobs project
+locally:
+
+[source, bash]
+----
+minikube start
+minikube addons enable ingress
+eval $(minikube -p minikube docker-env)
+skaffold dev
+----
