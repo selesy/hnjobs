@@ -1,0 +1,13 @@
+ARG BUILD
+
+FROM $BUILD as build
+RUN GOOS=js GOARCH=wasm go build -o /app ./cmd/ui/ui.go
+# RUN GOOS=js GOARCH=wasm go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /app cmd/ui/ui.go
+
+FROM nginx
+
+# EXPOSE 80/TCP
+
+COPY --from=build /app /usr/share/nginx/html/ui.wasm
+COPY pkg/ui/static/ /usr/share/nginx/html
+COPY pkg/ui/config/nginx.conf /etc/nginx

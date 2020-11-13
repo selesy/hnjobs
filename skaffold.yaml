@@ -7,8 +7,14 @@ build:
   - image: hnjobs-server
     docker:
       dockerfile: Dockerfile-server
-      buildArgs:
-        MAIN: "cmd/server/server.go"
+    requires:
+      - image: hnjobs-build
+        alias: BUILD
+      - image: hnjobs-run
+        alias: RUN
+  - image: hnjobs-ui
+    docker:
+      dockerfile: Dockerfile-ui
     requires:
       - image: hnjobs-build
         alias: BUILD
@@ -25,3 +31,4 @@ deploy:
     manifests:
     - k8s/coredns.yaml
     - k8s/server.yaml
+    - k8s/ui.yaml
