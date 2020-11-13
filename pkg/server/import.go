@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/selesy/hnjobs"
+
 	pb "github.com/selesy/hnjobs"
 	log "github.com/sirupsen/logrus"
 )
@@ -35,7 +36,7 @@ type ImportServer struct {
 func (s ImportServer) AddWhoIsHiring(context.Context, *pb.ItemReference) (*pb.ImportStatus, error) {
 	log.Info("AddWhoIsHiring")
 
-	return &pb.ImportStatus{
+	return &pb.ImportStatus{ // nolint:exhaustivestruct
 		ItemStatus: pb.ImportItemStatus_ACCEPTED,
 		JobStatus:  pb.ImportJobStatus_ARCHIVED,
 	}, nil
