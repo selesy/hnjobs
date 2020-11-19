@@ -27,8 +27,6 @@ build:
     docker:
       dockerfile: Dockerfile-run
 deploy:
-  kubectl:
-    manifests:
-    - k8s/coredns.yaml
-    - k8s/server.yaml
-    - k8s/ui.yaml
+  kustomize:
+    paths:
+    - k8s/overlays/local
